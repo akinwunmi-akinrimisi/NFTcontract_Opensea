@@ -1,0 +1,16 @@
+{
+    "name": "Exclusive NFT",
+    "description": "This is an exclusive NFT with unique properties.",
+    "image": "ipfs://QmVvBNCfssCJKdczuc1cKipvdEXXFdFTuugCdoWCXCvKmK",
+    "attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Yellow"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Legendary"
+      }
+    ]
+  }
+  

@@ -19,8 +19,8 @@ const config: HardhatUserConfig = {
     },
     // Adding Sepolia configuration
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
-      accounts: [`0x${ACCOUNT_PRIVATE_KEY}`],
+      url: process.env.ALCHEMY_API_KEY,
+      accounts: [process.env.ACCOUNT_PRIVATE_KEY!],
       gasPrice: 1000000000
      },
   },
