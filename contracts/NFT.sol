@@ -33,6 +33,7 @@ contract NFTMint is ERC721URIStorage {
         require(recipient != address(0), "address zero cannot mint");
         require(block.timestamp > mintingStartTime, "minting yet to start");
         require(block.timestamp < mintingEndTime, "minting ended");
+        require(!isContract(msg.sender), "contract cannot mint");
 
         // Increment the tokenCounter (to track how many NFTs have been minted)
         tokenCounter++;
@@ -73,5 +74,13 @@ contract NFTMint is ERC721URIStorage {
             _i /= 10;
         }
         return string(buffer);
+    }
+
+    function isContract(address account) internal view returns(bool){
+        uint256 size;
+        assembly {
+            size := extcodesize(account)
+        }
+        return size >0;
     }
 }
