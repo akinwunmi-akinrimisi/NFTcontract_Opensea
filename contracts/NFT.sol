@@ -3,9 +3,10 @@ pragma solidity ^0.8.0;
 
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol"; // Importing Ownable for owner restriction
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract NFTMint is ERC721URIStorage {
+contract NFTMint is ERC721URIStorage, Ownable(msg.sender){
     uint256 public tokenCounter;   // Keeps track of how many NFTs have been minted
     uint256 public maxSupply;      // The maximum number of NFTs that can be minted
     string public baseTokenURI;    // Base URI for all NFTs
@@ -83,4 +84,11 @@ contract NFTMint is ERC721URIStorage {
         }
         return size >0;
     }
+
+    function updateMaxSupply(uint256 _newMaxSupply) public onlyOwner{
+        require(tokenCounter >= (maxSupply*9)/10, "90% required");
+        require(_newMaxSupply > maxSupply, "new max must be greater" );
+        maxSupply = _newMaxSupply;
+    }
 }
+
